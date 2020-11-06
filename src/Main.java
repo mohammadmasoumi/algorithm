@@ -33,6 +33,16 @@ public class Main {
 //        System.out.println(tree.minValue());;
 //        System.out.println(tree.minValueBST());;
 
+        BinaryTree secondTree = new BinaryTree();
+        secondTree.insert(7);
+        secondTree.insert(4);
+        secondTree.insert(9);
+        secondTree.insert(1);
+        secondTree.insert(6);
+        secondTree.insert(8);
+        secondTree.insert(10);
+//
+        System.out.println(tree.equals(secondTree));
     }
 }
 

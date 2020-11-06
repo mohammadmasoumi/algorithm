@@ -122,18 +122,45 @@ public class BinaryTree {
         return Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1;
     }
 
+
+    /**
+     * @param tree the tree which we want to compare with current one
+     * @return a boolean which indicates given tree is equal to the current one or not
+     */
+    public boolean equals(BinaryTree tree) {
+        return equals(rootNode, tree.rootNode);
+    }
+
+    /**
+     * @param firstNode  first tree's node
+     * @param secondNode second tree's node
+     * @return boolean that indicates values of firstNode and secondNode are equal
+     */
+    private boolean equals(Node firstNode, Node secondNode) {
+        if (firstNode == null && secondNode == null)
+            return true;
+
+        if (firstNode != null && secondNode != null)
+            return firstNode.getValue() == secondNode.getValue() &&
+                    equals(firstNode.getRightNode(), secondNode.getRightNode()) &&
+                    equals(firstNode.getLeftNode(), secondNode.getLeftNode());
+
+        return false;
+    }
+
     /**
      * time complexity O(log n)
+     *
      * @return minimum value of tree
      */
-    public int minValueBST(){
+    public int minValueBST() {
         if (rootNode == null)
             throw new IllegalStateException();
 
         var currentNode = rootNode;
         var lastNode = currentNode;
 
-        while( currentNode != null){
+        while (currentNode != null) {
             lastNode = currentNode;
             currentNode = currentNode.getLeftNode();
         }
@@ -142,6 +169,7 @@ public class BinaryTree {
 
     /**
      * time complexity O(n)
+     *
      * @return minimum value in the tree
      */
     public int minValue() {
