@@ -15,7 +15,7 @@ public class Main {
 
 //        System.out.println(tree.find(7));
 //        System.out.println(tree.find(11));
-
+//
 //        System.out.println("--- traversePreOrderDFS ---");
 //        tree.traversePreOrderDFS();
 //
@@ -24,9 +24,14 @@ public class Main {
 //
 //        System.out.println("--- traversePostOrderDFS ---");
 //        tree.traversePostOrderDFS();
+//
+//        System.out.println("--- traverseBFS ---");
+//        tree.traverseBFS();
+//
+//        System.out.println(tree.height());;
+//
+//        System.out.println(tree.minValue());;
 
-        System.out.println("--- traverseBFS ---");
-        tree.traverseBFS();
     }
 }
 

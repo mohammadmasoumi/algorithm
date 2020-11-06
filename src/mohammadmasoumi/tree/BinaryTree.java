@@ -42,6 +42,10 @@ public class BinaryTree {
             return "Node: " + value;
         }
 
+        public boolean isLeafNode() {
+            return leftNode == null && rightNode == null;
+        }
+
     }
 
     private Node rootNode;
@@ -78,7 +82,6 @@ public class BinaryTree {
         }
     }
 
-
     /**
      * @param value node's value
      * @return whether the value is in the tree true or not
@@ -98,6 +101,47 @@ public class BinaryTree {
         return false;
     }
 
+    /**
+     * @return height of the tree
+     */
+    public int height() {
+        return height(rootNode);
+    }
+
+    /**
+     * @param node rootNode
+     * @return height of the tree
+     */
+    private int height(Node node) {
+        if (node == null)
+            return -1;
+
+        if (node.isLeafNode())
+            return 0;
+
+        return Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1;
+    }
+
+    /**
+     * @return minimum value in the tree
+     */
+    public int minValue() {
+        return minValue(rootNode);
+    }
+
+    /**
+     * @param node rootNode
+     * @return minimum value in the tree
+     */
+    private int minValue(Node node) {
+        if (node.isLeafNode())
+            return node.getValue();
+
+        return Math.min(
+                rootNode.getValue(),
+                Math.min(minValue(node.getLeftNode()), minValue(node.getRightNode()))
+        );
+    }
 
     /**
      *
@@ -111,7 +155,7 @@ public class BinaryTree {
     /**
      * @param nodes nodes to traverse
      */
-    public void traverseBFS(List<Node> nodes) {
+    private void traverseBFS(List<Node> nodes) {
         if (nodes.isEmpty())
             return;
 
