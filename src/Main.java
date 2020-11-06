@@ -31,6 +31,7 @@ public class Main {
 //        System.out.println(tree.height());;
 //
 //        System.out.println(tree.minValue());;
+//        System.out.println(tree.minValueBST());;
 
     }
 }

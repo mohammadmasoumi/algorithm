@@ -123,6 +123,25 @@ public class BinaryTree {
     }
 
     /**
+     * time complexity O(log n)
+     * @return minimum value of tree
+     */
+    public int minValueBST(){
+        if (rootNode == null)
+            throw new IllegalStateException();
+
+        var currentNode = rootNode;
+        var lastNode = currentNode;
+
+        while( currentNode != null){
+            lastNode = currentNode;
+            currentNode = currentNode.getLeftNode();
+        }
+        return lastNode.getValue();
+    }
+
+    /**
+     * time complexity O(n)
      * @return minimum value in the tree
      */
     public int minValue() {
