@@ -1,5 +1,8 @@
 package mohammadmasoumi.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryTree {
 
     /**
@@ -43,18 +46,19 @@ public class BinaryTree {
 
     private Node rootNode;
 
-
     /**
-     * @param value
+     * @param value newNode's value
      */
     public void insert(int value) {
         var newNode = new Node(value);
+
         if (rootNode == null) {
             rootNode = newNode;
             return;
         }
 
         var currentNode = rootNode;
+
         while (true) {
             if (value < currentNode.getValue()) {
                 var leftNode = currentNode.getLeftNode();
@@ -69,9 +73,143 @@ public class BinaryTree {
                     currentNode.setRightNode(newNode);
                     break;
                 } else
-                    currentNode = currentNode.getLeftNode();
+                    currentNode = currentNode.getRightNode();
             }
         }
     }
+
+
+    /**
+     * @param value node's value
+     * @return whether the value is in the tree true or not
+     */
+    public boolean find(int value) {
+        var currentNode = rootNode;
+
+        while (currentNode != null) {
+            if (value < currentNode.getValue())
+                currentNode = currentNode.getLeftNode();
+            else if (value > currentNode.getValue())
+                currentNode = currentNode.getRightNode();
+            else
+                return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     *
+     */
+    public void traverseBFS() {
+        List<Node> nodes = new ArrayList<>();
+        nodes.add(rootNode);
+        traverseBFS(nodes);
+    }
+
+    /**
+     * @param nodes nodes to traverse
+     */
+    public void traverseBFS(List<Node> nodes) {
+        if (nodes.isEmpty())
+            return;
+
+        int nodesSize = nodes.size();
+        Node currentNode, leftNode, rightNode;
+
+        for (int i = 0; i < nodesSize; i++) {
+            currentNode = nodes.get(0);
+            System.out.println(currentNode.getValue());
+
+            leftNode = currentNode.getLeftNode();
+            rightNode = currentNode.getRightNode();
+
+            nodes.remove(currentNode);
+
+            if (leftNode != null)
+                nodes.add(leftNode);
+
+            if (rightNode != null)
+                nodes.add(rightNode);
+        }
+        traverseBFS(nodes);
+    }
+
+    /**
+     *
+     */
+    public void traversePreOrderDFS() {
+        traversePreOrderDFS(rootNode);
+    }
+
+    /**
+     * pre-order DFS: root, left, right
+     * <p>
+     * 7
+     * 4     9
+     * 1   6 8   10
+     *
+     * @param root rootNode
+     */
+    private void traversePreOrderDFS(Node root) {
+        if (root == null)
+            return;
+
+        System.out.println(root.getValue());
+        traversePreOrderDFS(root.getLeftNode());
+        traversePreOrderDFS(root.getRightNode());
+    }
+
+    /**
+     *
+     */
+    public void traverseInOrderDFS() {
+        traverseInOrderDFS(rootNode);
+    }
+
+    /**
+     * pre-order DFS: left, root, right
+     * <p>
+     * 7
+     * 4     9
+     * 1   6 8   10
+     *
+     * @param root rootNode
+     */
+    private void traverseInOrderDFS(Node root) {
+        if (root == null)
+            return;
+
+        traverseInOrderDFS(root.getLeftNode());
+        System.out.println(root.getValue());
+        traverseInOrderDFS(root.getRightNode());
+    }
+
+    /**
+     *
+     */
+    public void traversePostOrderDFS() {
+        traversePostOrderDFS(rootNode);
+    }
+
+    /**
+     * pre-order DFS: left, right, root
+     * <p>
+     * 7
+     * 4     9
+     * 1   6 8   10
+     *
+     * @param root rootNode
+     */
+    private void traversePostOrderDFS(Node root) {
+        if (root == null)
+            return;
+
+        traversePostOrderDFS(root.getLeftNode());
+        traversePostOrderDFS(root.getRightNode());
+        System.out.println(root.getValue());
+    }
+
 
 }
