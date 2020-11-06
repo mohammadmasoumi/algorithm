@@ -128,6 +128,9 @@ public class BinaryTree {
      * @return a boolean which indicates given tree is equal to the current one or not
      */
     public boolean equals(BinaryTree tree) {
+        if (tree == null)
+            return false;
+
         return equals(rootNode, tree.rootNode);
     }
 
